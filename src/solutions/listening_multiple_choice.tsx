@@ -9,7 +9,6 @@ export class ListeningMultipleChoice implements Solution{
         this.class_name = class_name;
     }
 
-
     is_using_solution(): boolean {
         return this.current_document.getElementsByClassName(this.class_name).length !== 0;
     }
@@ -21,10 +20,10 @@ export class ListeningMultipleChoice implements Solution{
             let answers = question.children;
             for (const answer of answers) {
                 let data_answer = answer.getAttribute("data-answer");
-                let text_color = ((data_answer === "True") ? "Green" : "Red")
+                let text_color = ((data_answer === "True") ? "Green" : "Red");
 
                 answer.children[1].innerHTML +=
-                    `<p style="color: ${text_color}; font-weight: bold;">${data_answer}</p>`
+                    `<p style="color: ${text_color}; font-weight: bold;">${data_answer}</p>`;
             }
         }
     }
