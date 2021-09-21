@@ -1,20 +1,12 @@
 import { Solution } from "./solution";
 
-export class ListeningMultipleChoice implements Solution{
-    current_document: Document;
-    class_name: string;
-
-    constructor(current_document:Document, class_name: string) {
-        this.current_document = current_document;
-        this.class_name = class_name;
-    }
-
-    is_using_solution(): boolean {
-        return this.current_document.getElementsByClassName(this.class_name).length !== 0;
+export class ListeningMultipleChoice extends Solution{
+    get class_name(): string {
+        return "comprension_oral_larga";
     }
 
     solve(): void {
-        let questions = this.current_document.getElementsByClassName(this.class_name);
+        let questions = this.current_document.getElementsByClassName("ms-act-section-workbook-card-a-item");
         for (const question of questions) {
 
             let answers = question.children;
@@ -23,7 +15,7 @@ export class ListeningMultipleChoice implements Solution{
                 let text_color = ((data_answer === "True") ? "Green" : "Red");
 
                 answer.children[1].innerHTML +=
-                    `<p style="color: ${text_color}; font-weight: bold;">${data_answer}</p>`;
+                    `<p style="color: ${text_color}; font-weight: bold;">${data_answer}dsadkfljsdfk</p>`;
             }
         }
     }

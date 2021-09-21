@@ -1,24 +1,16 @@
 import { Solution } from "./solution";
 
-export class ListeningSelectFillWords implements Solution{
-    current_document: Document;
-    class_name: string;
-
-    constructor(current_document:Document, class_name: string) {
-        this.current_document = current_document;
-        this.class_name = class_name;
-    }
-
-    is_using_solution(): boolean {
-        return this.current_document.querySelectorAll(`[id^="${this.class_name}"]`).length != 0
+export class ListeningSelectFillWords extends Solution{
+    get class_name(): string {
+        return "completando_texto";
     }
 
     solve(): void {
-        let fields = this.current_document.querySelectorAll(`[id^="${this.class_name}"]`);
+        let fields = this.current_document.querySelectorAll('[id^="resultBox_"]');
         for (const field of fields){
 
             let answer = field.getAttribute("word");
-            field.innerHTML += `<p style="color: Green; font-weight: bold;">${answer}</p>`;
+            field.innerHTML += `<p style="color: Green; font-weight: bold;">${answer}kkj</p>`;
         }
     }
 }

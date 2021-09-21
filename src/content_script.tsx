@@ -3,8 +3,8 @@ import { ListeningMultipleChoice } from "./solutions/listening_multiple_choice";
 import { ListeningSelectFillWords } from "./solutions/listening_select_fill_words";
 
 const solutions: Solution[] = [
-    new ListeningMultipleChoice(document, "ms-act-section-workbook-card-a-item"),
-    new ListeningSelectFillWords(document, "resultBox_")
+    new ListeningMultipleChoice(document),
+    new ListeningSelectFillWords(document)
 ]
 
 for (let solution of solutions){

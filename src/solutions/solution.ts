@@ -1,13 +1,20 @@
 export abstract class Solution {
     current_document: Document;
-    class_name: string;
 
-    constructor(current_document:Document, class_name: string) {
+    abstract get class_name(): string;
+
+    constructor(current_document: Document) {
         this.current_document = current_document;
-        this.class_name = class_name;
     }
 
-    abstract is_using_solution(): boolean;
+    is_using_solution(): boolean {
+        let action = document.querySelector('form[action]')?.getAttribute("action");
+        if (action?.includes(this.class_name)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     abstract solve(): void;
 }
