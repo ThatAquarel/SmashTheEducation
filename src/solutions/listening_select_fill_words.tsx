@@ -1,16 +1,22 @@
+import React from "react";
+import { AnswerField, renderComponentToString } from "./answer";
 import { Solution } from "./solution";
 
-export class ListeningSelectFillWords extends Solution{
+export class ListeningSelectFillWords extends Solution {
     get class_name(): string {
         return "completando_texto";
     }
 
     solve(): void {
         let fields = this.current_document.querySelectorAll('[id^="resultBox_"]');
-        for (const field of fields){
+        for (const field of fields) {
 
-            let answer = field.getAttribute("word");
-            field.innerHTML += `<p style="color: Green; font-weight: bold;">${answer}kkj</p>`;
+            let answer_string = field.getAttribute("word");
+            if (answer_string == null) answer_string = "Could not find answer";
+
+            field.innerHTML += renderComponentToString(
+                <AnswerField answer={answer_string} color="Green" />
+            );
         }
     }
 }

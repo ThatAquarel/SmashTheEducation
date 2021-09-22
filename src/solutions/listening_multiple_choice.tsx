@@ -1,6 +1,8 @@
+import React from "react";
+import { AnswerField, renderComponentToString } from "./answer";
 import { Solution } from "./solution";
 
-export class ListeningMultipleChoice extends Solution{
+export class ListeningMultipleChoice extends Solution {
     get class_name(): string {
         return "comprension_oral_larga";
     }
@@ -11,11 +13,13 @@ export class ListeningMultipleChoice extends Solution{
 
             let answers = question.children;
             for (const answer of answers) {
-                let data_answer = answer.getAttribute("data-answer");
-                let text_color = ((data_answer === "True") ? "Green" : "Red");
+                let answer_string = answer.getAttribute("data-answer");
+                if (answer_string == null) answer_string = "Could not find answer";
+                let text_color = ((answer_string === "True") ? "Green" : "Red");
 
-                answer.children[1].innerHTML +=
-                    `<p style="color: ${text_color}; font-weight: bold;">${data_answer}dsadkfljsdfk</p>`;
+                answer.children[1].innerHTML += renderComponentToString(
+                    <AnswerField answer={answer_string} color={text_color} />
+                );
             }
         }
     }
