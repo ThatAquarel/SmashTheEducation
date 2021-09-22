@@ -1,6 +1,6 @@
 import React from "react";
-import { AnswerField, renderComponentToString } from "./answer";
-import { Solution } from "./solution";
+import { AnswerField, renderComponentToString } from "../answer";
+import { Solution } from "../solution";
 
 export class ExerciseWriteSentenceAudio extends Solution{
     get class_name(): string {
