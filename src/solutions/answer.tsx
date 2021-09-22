@@ -7,17 +7,20 @@ interface AnswerProps {
     backgroundColor?: string
 }
 
+export const answer_class: string = "smash_the_edu_answerfield";
+
 export class AnswerField extends React.Component<AnswerProps> {
     render() {
         let _backgroundColor = this.props.backgroundColor;
         if (_backgroundColor == null) _backgroundColor = "transparent";
 
         return (
-            <p style={{
-                color: this.props.color,
-                backgroundColor: _backgroundColor,
-                fontWeight: "bold"
-            }}>
+            <p className={answer_class}
+                style={{
+                    color: this.props.color,
+                    backgroundColor: _backgroundColor,
+                    fontWeight: "bold"
+                }}>
                 {this.props.answer}
             </p>
         );

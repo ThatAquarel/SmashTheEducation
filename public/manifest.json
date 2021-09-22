@@ -19,6 +19,17 @@
       ]
     }
   ],
+  "commands": {
+    "toggle_answers": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Q"
+      },
+      "description": "Toggle SmashEducation Answers"
+    }
+  },
+  "background": {
+    "service_worker": "js/background.js"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
