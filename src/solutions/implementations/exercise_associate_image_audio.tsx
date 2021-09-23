@@ -1,8 +1,8 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
-import { Solution } from "../solution";
+import { AbstractSolution } from "../abstract_solution";
 
-export class ExerciseAssociateImageAudio extends Solution {
+export class ExerciseAssociateImageAudio extends AbstractSolution {
     get class_name(): string {
         return "relaciona_imagen";
     }
@@ -16,9 +16,9 @@ export class ExerciseAssociateImageAudio extends Solution {
 
             let element = field.parentElement?.parentElement;
             if (element == null) continue;
-            
+
             element.innerHTML += renderComponentToString(
-                <AnswerField answer={answer_string} color="Green" backgroundColor="white"/>
+                <AnswerField answer={answer_string} color="Green" backgroundColor="white" />
             );
         }
     }

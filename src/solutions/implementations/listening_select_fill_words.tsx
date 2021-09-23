@@ -1,8 +1,8 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
-import { Solution } from "../solution";
+import { AbstractSolution } from "../abstract_solution";
 
-export class ListeningSelectFillWords extends Solution {
+export class ListeningSelectFillWords extends AbstractSolution {
     get class_name(): string {
         return "completando_texto";
     }

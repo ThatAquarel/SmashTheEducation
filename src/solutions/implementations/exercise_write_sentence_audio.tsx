@@ -1,8 +1,8 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
-import { Solution } from "../solution";
+import { AbstractSolution } from "../abstract_solution";
 
-export class ExerciseWriteSentenceAudio extends Solution{
+export class ExerciseWriteSentenceAudio extends AbstractSolution {
     get class_name(): string {
         return "foto_texto_escribe";
     }
@@ -14,7 +14,7 @@ export class ExerciseWriteSentenceAudio extends Solution{
         let field = document.getElementsByClassName("respuesta")[0];
 
         field.innerHTML += renderComponentToString(
-            <AnswerField answer={answer_string} color="Green"/>
+            <AnswerField answer={answer_string} color="Green" />
         );
     }
 }

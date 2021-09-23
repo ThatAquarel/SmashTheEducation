@@ -1,20 +1,18 @@
-export abstract class Solution {
-    readonly current_document: Document;
+import { AbstractSolution } from "./abstract_solution";
+import { ExerciseAssociateImageAudio } from "./implementations/exercise_associate_image_audio";
+import { ExerciseWriteSentenceAudio } from "./implementations/exercise_write_sentence_audio";
+import { ListeningMultipleChoice } from "./implementations/listening_multiple_choice";
+import { ListeningSelectFillWords } from "./implementations/listening_select_fill_words";
 
-    abstract get class_name(): string;
+export namespace Solution {
+    const instances: AbstractSolution[] = [
+        new ExerciseAssociateImageAudio(document),
+        new ExerciseWriteSentenceAudio(document),
+        new ListeningMultipleChoice(document),
+        new ListeningSelectFillWords(document)
+    ]
 
-    constructor(current_document: Document) {
-        this.current_document = current_document;
+    export function get_instances(): AbstractSolution[] {
+        return instances;
     }
-
-    is_using_solution(): boolean {
-        let action = document.querySelector('form[action]')?.getAttribute("action");
-        if (action?.includes(this.class_name)) {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    abstract solve(): void;
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
-import { Solution } from "../solution";
+import { AbstractSolution } from "../abstract_solution";
 
-export class ListeningMultipleChoice extends Solution {
+export class ListeningMultipleChoice extends AbstractSolution {
     get class_name(): string {
         return "comprension_oral_larga";
     }
