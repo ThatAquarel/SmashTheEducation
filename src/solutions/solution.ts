@@ -1,5 +1,5 @@
 export abstract class Solution {
-    current_document: Document;
+    readonly current_document: Document;
 
     abstract get class_name(): string;
 
