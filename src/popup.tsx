@@ -1,57 +1,55 @@
-import React, { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import Paper from '@mui/material/Paper';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import React from "react";
 import ReactDOM from "react-dom";
+import Settings from "./settings";
 
-const Popup = () => {
-  const [count, setCount] = useState(0);
-  const [currentURL, setCurrentURL] = useState<string>();
+const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
-  useEffect(() => {
-    chrome.browserAction.setBadgeText({ text: count.toString() });
-  }, [count]);
-
-  useEffect(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      setCurrentURL(tabs[0].url);
-    });
-  }, []);
-
-  const changeBackground = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      const tab = tabs[0];
-      if (tab.id) {
-        chrome.tabs.sendMessage(
-          tab.id,
-          {
-            color: "#555555",
-          },
-          (msg) => {
-            console.log("result message:", msg);
-          }
-        );
-      }
-    });
-  };
-
-  return (
-    <>
-      <ul style={{ minWidth: "700px" }}>
-        <li>Current URL: {currentURL}</li>
-        <li>Current Time: {new Date().toLocaleTimeString()}</li>
-      </ul>
-      <button
-        onClick={() => setCount(count + 1)}
-        style={{ marginRight: "5px" }}
-      >
-        count up
-      </button>
-      <button onClick={changeBackground}>change background</button>
-    </>
-  );
-};
+export default function App() {
+    return (
+        <Box sx={{
+            p: 2,
+            bgcolor: 'background.default',
+            display: 'grid',
+            gridTemplateColumns: { md: '1fr 1fr' },
+            gap: 2,
+        }}>
+            <Paper elevation={0}>
+                <Typography variant="h6"
+                    gutterBottom
+                    component="div"
+                    align="center"
+                    sx={{
+                        fontWeight: "bold"
+                    }}>
+                    SmashTheEducation
+                    <Typography gutterBottom
+                        color="text.secondary"
+                        sx={{ fontSize: 14 }}>
+                        version 1.0
+                    </Typography>
+                </Typography>
+            </Paper>
+            <Paper elevation={2}>
+                <Container maxWidth="sm">
+                    <Settings />
+                </Container>
+            </Paper>
+        </Box>
+    )
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Popup />
-  </React.StrictMode>,
-  document.getElementById("root")
+    <React.StrictMode>
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
+            <App />
+        </ThemeProvider>
+    </React.StrictMode>,
+    document.getElementById("root")
 );

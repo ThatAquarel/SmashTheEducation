@@ -10,7 +10,6 @@ for (let solution of Solution.get_instances()) {
 
 function keydown(event: KeyboardEvent) {
     if (event.ctrlKey && event.shiftKey && event.key === "Q") {
-        console.log("toggle");
         toggle_answers();
     }
 }

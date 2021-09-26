@@ -7,10 +7,11 @@ module.exports = {
     entry: {
       popup: path.join(srcDir, 'popup.tsx'),
     //   options: path.join(srcDir, 'options.tsx'),
-    //   background: path.join(srcDir, 'background.ts'),
+      background: path.join(srcDir, 'background.ts'),
       content_script: path.join(srcDir, 'content_script.ts'),
     },
     output: {
+        // globalObject: "this",
         path: path.join(__dirname, "../dist/js"),
         filename: "[name].js",
     },
