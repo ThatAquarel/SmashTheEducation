@@ -3,8 +3,8 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class ExerciseWriteSentenceAudio extends AbstractSolution {
-    get class_name(): string {
-        return "foto_texto_escribe";
+    get name(): string {
+        return "ExerciseWriteSentenceAudio";
     }
 
     solve(): void {

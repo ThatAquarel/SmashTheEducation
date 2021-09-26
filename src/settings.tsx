@@ -1,16 +1,14 @@
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Tab from '@mui/material/Tab';
 import * as React from 'react';
-import { Functionality } from './settings/functionality';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
-import Button from '@mui/material/Button';
-import { Solution } from './solutions/solution';
 import { saveFunctionality } from './functions/save_functionality';
-
-const solutions = Solution.get_instances();
+import { Functionality } from './settings/functionality';
+import { class_names } from './solutions/class_names';
 
 export default function Settings() {
     const [value, setValue] = React.useState('1');
@@ -19,7 +17,7 @@ export default function Settings() {
     };
 
     const [disabled, setDisabled] = React.useState(true);
-    const [functionality, setFunctionality] = React.useState(Array(solutions.length).fill(true));
+    const [functionality, setFunctionality] = React.useState(Array(class_names.length).fill(true));
 
     const onModifyFunctionality = (states: Boolean[]) => {
         setFunctionality(states);

@@ -3,8 +3,8 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class ListeningSelectFillWords extends AbstractSolution {
-    get class_name(): string {
-        return "completando_texto";
+    get name(): string {
+        return "ListeningSelectFillWords";
     }
 
     solve(): void {

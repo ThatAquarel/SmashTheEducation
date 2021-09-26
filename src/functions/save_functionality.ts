@@ -1,10 +1,8 @@
-import { Solution } from "../solutions/solution";
-
-const solutions = Solution.get_instances();
+import { class_names } from "../solutions/class_names";
 
 export function saveFunctionality(functionality: Boolean[]) {
-    for (let i = 0; i < solutions.length; i++) {
-        let key = solutions[i].class_name;
+    for (let i = 0; i < class_names.length; i++) {
+        let key = class_names[i];
         let value = functionality[i];
 
         let dict: { [index: string]: Boolean } = {};

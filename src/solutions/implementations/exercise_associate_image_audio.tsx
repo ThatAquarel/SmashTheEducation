@@ -3,8 +3,8 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class ExerciseAssociateImageAudio extends AbstractSolution {
-    get class_name(): string {
-        return "relaciona_imagen";
+    get name(): string {
+        return "ExerciseAssociateImageAudio";
     }
 
     solve(): void {

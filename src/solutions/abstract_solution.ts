@@ -1,7 +1,13 @@
+import { class_names_dict } from "./class_names";
+
 export abstract class AbstractSolution {
     readonly current_document: Document;
 
-    abstract get class_name(): string;
+    abstract get name(): string;
+
+    get class_name(): string {
+        return class_names_dict[this.name];
+    };
 
     constructor(current_document: Document) {
         this.current_document = current_document;
