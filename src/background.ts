@@ -1,54 +1,54 @@
-// import { Solution } from "./solutions/solution";
+import { class_names } from "./solutions/class_names";
 
-// const solutions = Solution.get_instances();
+let functionality = Array(class_names.length);
+loadAllFunctionality((states: Boolean[]) => {
+    functionality = [...states];
+});
 
-// let functionality = Array(solutions.length);
-// loadFunctionality((states: Boolean[]) => {
-//     functionality = [...states];
-// });
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+    if (message.saveFunctionality) {
+        saveFunctionality(message.saveFunctionality);
+        sendResponse(true);
+    } else if (message.loadAllFunctionality) {
+        loadAllFunctionality((states) => {
+            sendResponse(states);
+        });
+    }
+});
 
-// chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-//     if (message.loadFunctionality) {
-//         loadFunctionality((states) => {
-//             sendResponse(states);
-//         });
-//     } else if (message.saveFunctionality) {
-//         saveFunctionality(message.saveFunctionality);
-//         sendResponse(true);
-//     }
-// });
+function saveFunctionality(states: Boolean[]) {
+    functionality = [...states];
 
-// function saveFunctionality(functionality: Boolean[]) {
-//     for (let i = 0; i < solutions.length; i++) {
-//         let key = solutions[i].class_name;
-//         let value = functionality[i];
+    for (let i = 0; i < class_names.length; i++) {
+        let key = class_names[i];
+        let value = states[i];
 
-//         let dict: { [index: string]: Boolean } = {};
-//         dict[key] = value;
+        let dict: { [index: string]: Boolean } = {};
+        dict[key] = value;
 
-//         chrome.storage.sync.set(dict, () => {
-//             console.log(dict);
-//         });
-//     }
-// }
+        chrome.storage.sync.set(dict, () => {
+            console.log(dict);
+        });
+    }
+}
 
-// function loadFunctionality(callback: (states: Boolean[]) => void) {
-//     if (!functionality.includes(undefined)) callback(functionality);
+function loadAllFunctionality(callback: (states: Boolean[]) => void) {
+    if (!functionality.includes(undefined)) callback(functionality);
 
-//     let new_functionality = Array(solutions.length);
-//     let calls = 0;
+    let new_functionality = Array(class_names.length);
+    let calls = 0;
 
-//     solutions.map((solution, i) => {
-//         chrome.storage.sync.get([solution.class_name], (result) => {
-//             let state = result[solution.class_name];
-//             if (state != true && state != false) state = true;
+    class_names.map((class_name, i) => {
+        chrome.storage.sync.get([class_name], (result) => {
+            let state = result[class_name];
+            if (state != true && state != false) state = true;
 
-//             new_functionality[i] = state;
-//             calls++;
+            new_functionality[i] = state;
+            calls++;
 
-//             if (calls >= new_functionality.length) {
-//                 callback(new_functionality);
-//             }
-//         });
-//     });
-// }
+            if (calls >= new_functionality.length) {
+                callback(new_functionality);
+            }
+        });
+    });
+}

@@ -1,3 +1,4 @@
+import { loadFunctionality } from "../functions/save_functionality";
 import { class_names_dict } from "./class_names";
 
 export abstract class AbstractSolution {
@@ -22,5 +23,11 @@ export abstract class AbstractSolution {
         }
     };
 
-    abstract solve(): void;
+    solve(): void {
+        loadFunctionality(this.class_name, (state) => {
+            if (state) this._solve();
+        });
+    }
+
+    abstract _solve(): void;
 }

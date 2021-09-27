@@ -7,7 +7,7 @@ export class ListeningMultipleChoice extends AbstractSolution {
         return "ListeningMultipleChoice";
     }
 
-    solve(): void {
+    _solve(): void {
         let questions = this.current_document.getElementsByClassName("ms-act-section-workbook-card-a-item");
         for (const question of questions) {
 

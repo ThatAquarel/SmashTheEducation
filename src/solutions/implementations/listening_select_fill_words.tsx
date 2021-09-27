@@ -7,7 +7,7 @@ export class ListeningSelectFillWords extends AbstractSolution {
         return "ListeningSelectFillWords";
     }
 
-    solve(): void {
+    _solve(): void {
         let fields = this.current_document.querySelectorAll('[id^="resultBox_"]');
         for (const field of fields) {
 

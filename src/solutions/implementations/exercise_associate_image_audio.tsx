@@ -7,7 +7,7 @@ export class ExerciseAssociateImageAudio extends AbstractSolution {
         return "ExerciseAssociateImageAudio";
     }
 
-    solve(): void {
+    _solve(): void {
         let fields = document.getElementsByClassName("carousel-item");
         for (const field of fields) {
 

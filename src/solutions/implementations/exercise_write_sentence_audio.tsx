@@ -7,7 +7,7 @@ export class ExerciseWriteSentenceAudio extends AbstractSolution {
         return "ExerciseWriteSentenceAudio";
     }
 
-    solve(): void {
+    _solve(): void {
         let answer_string = this.current_document.getElementById("C_Ans")?.innerText;
         if (answer_string == null) answer_string = "Could not find answer";
 

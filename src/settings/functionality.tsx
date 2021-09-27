@@ -4,7 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { createTheme } from '@mui/material/styles';
 import Box from '@mui/system/Box';
 import * as React from 'react';
-import { loadFunctionality } from '../functions/save_functionality';
+import { loadAllFunctionality } from '../functions/save_functionality';
 import { class_names } from '../solutions/class_names';
 
 const darkTheme = createTheme({
@@ -21,22 +21,7 @@ export function Functionality(props: FunctionalityProps) {
     const [checked_list, setChecked] = React.useState(Array(class_names.length).fill(true));
 
     React.useEffect(() => {
-        // loadFunctionality((states) => { setChecked(states) });
-
-        let new_functionality = Array(class_names.length);
-        let calls = 0;
-
-        class_names.map((class_name, i) => {
-            loadFunctionality(class_name, (states) => {
-                // new_functionality[i] = state;
-                new_functionality[i] = states;
-                calls++;
-
-                if (calls >= new_functionality.length) {
-                    setChecked(new_functionality);
-                }
-            });
-        });
+        loadAllFunctionality((states) => { setChecked(states) });
     }, []);
 
     const parentOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
