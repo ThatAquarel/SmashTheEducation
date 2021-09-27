@@ -14,6 +14,8 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
             sendResponse(states);
         });
     }
+
+    return true;
 });
 
 function saveFunctionality(states: Boolean[]) {
