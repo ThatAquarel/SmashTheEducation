@@ -1,29 +1,37 @@
-# Chrome Extension TypeScript Starter
+# SmashTheEducation
 
 ![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
 
-Chrome Extension, TypeScript and Visual Studio Code
-
 ## Prerequisites
 
-* [node + npm](https://nodejs.org/) (Current Version)
+* [git](https://git-scm.com/downloads)
+* [node + npm](https://nodejs.org/) (LTS Version)
 
-## Option
+## Setup
 
-* [Visual Studio Code](https://code.visualstudio.com/)
+Open a powershell window and run the following commands:
+```
+git clone https://github.com/ThatAquarel/SmashTheEducation.git
+cd SmashTheEducation
+npm install
+npm run build
+```
 
-## Includes the following
+## Load extension to chrome
 
-* TypeScript
-* Webpack
-* React
-* Jest
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
+Enable developer mode on chrome and click load unpacked.
+In the same powershell window, run the following command to get current folder:
+```
+pwd
+```
+Select the `dist/` folder inside the current folder.
+
+## Update
+
+Open a powershell window in the installation folder and run:
+```
+git pull
+```
 
 ## Project Structure
 
@@ -31,40 +39,3 @@ Chrome Extension, TypeScript and Visual Studio Code
 * src/assets: static files
 * dist: Chrome Extension directory
 * dist/js: Generated JavaScript files
-
-## Setup
-
-```
-npm install
-```
-
-## Import as Visual Studio Code project
-
-...
-
-## Build
-
-```
-npm run build
-```
-
-## Build in watch mode
-
-### terminal
-
-```
-npm run watch
-```
-
-### Visual Studio Code
-
-Run watch mode.
-
-type `Ctrl + Shift + B`
-
-## Load extension to chrome
-
-Load `dist` directory
-
-## Test
-`npx jest` or `npm run test`
