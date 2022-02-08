@@ -8,7 +8,7 @@ import Tab from '@mui/material/Tab';
 import * as React from 'react';
 import { saveFunctionality } from './functions/save_functionality';
 import { Functionality } from './settings/functionality';
-import { class_names } from './solutions/class_names';
+import { instances } from './solutions/solutions';
 
 export default function Settings() {
     const [value, setValue] = React.useState('1');
@@ -17,7 +17,7 @@ export default function Settings() {
     };
 
     const [disabled, setDisabled] = React.useState(true);
-    const [functionality, setFunctionality] = React.useState(Array(class_names.length).fill(true));
+    const [functionality, setFunctionality] = React.useState(Array(instances.length).fill(true));
 
     const onModifyFunctionality = (states: Boolean[]) => {
         setFunctionality(states);

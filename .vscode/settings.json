@@ -8,5 +8,6 @@
             ],
             "url": "http://json.schemastore.org/chrome-manifest"
         }
-    ]
+    ],
+    "cSpell.language": "en,fr,es,es-ES"
 }

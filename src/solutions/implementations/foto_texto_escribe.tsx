@@ -2,9 +2,9 @@ import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
-export class ExerciseWriteSentenceAudio extends AbstractSolution {
-    get name(): string {
-        return "ExerciseWriteSentenceAudio";
+export class FotoTextoEscribe extends AbstractSolution {
+    get smash_tag(): string {
+        return "foto_texto_escribe";
     }
 
     _solve(): void {

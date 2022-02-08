@@ -5,7 +5,7 @@ import { createTheme } from '@mui/material/styles';
 import Box from '@mui/system/Box';
 import * as React from 'react';
 import { loadAllFunctionality } from '../functions/save_functionality';
-import { class_names } from '../solutions/class_names';
+import { instances } from '../solutions/solutions';
 
 const darkTheme = createTheme({
     palette: {
@@ -18,7 +18,7 @@ interface FunctionalityProps {
 }
 
 export function Functionality(props: FunctionalityProps) {
-    const [checked_list, setChecked] = React.useState(Array(class_names.length).fill(true));
+    const [checked_list, setChecked] = React.useState(Array(instances.length).fill(true));
 
     React.useEffect(() => {
         loadAllFunctionality((states) => { setChecked(states) });
@@ -65,10 +65,10 @@ export function Functionality(props: FunctionalityProps) {
                 paddingLeft: "20px",
                 marginBottom: "10px"
             }}>
-                {class_names.map(function (class_name, i) {
+                {instances.map(function (instance, i) {
                     return (<FormControlLabel
                         label={<Typography color="text.secondary">
-                            {class_name}
+                            {instance.smash_tag}
                         </Typography>}
                         control={
                             <Checkbox

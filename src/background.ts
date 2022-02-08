@@ -1,6 +1,13 @@
-import { class_names } from "./solutions/class_names";
+const smash_tags: string[] = [
+    "relaciona_imagen",
+    "relacionando",
+    "foto_texto_escribe",
+    "comprension",
+    "completando_texto",
+    "escucha_selecciona",
+];
 
-let functionality = Array(class_names.length);
+let functionality = Array(smash_tags.length);
 loadAllFunctionality((states: Boolean[]) => {
     functionality = [...states];
 });
@@ -21,8 +28,8 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 function saveFunctionality(states: Boolean[]) {
     functionality = [...states];
 
-    for (let i = 0; i < class_names.length; i++) {
-        let key = class_names[i];
+    for (let i = 0; i < smash_tags.length; i++) {
+        let key = smash_tags[i];
         let value = states[i];
 
         let dict: { [index: string]: Boolean } = {};
@@ -37,12 +44,12 @@ function saveFunctionality(states: Boolean[]) {
 function loadAllFunctionality(callback: (states: Boolean[]) => void) {
     if (!functionality.includes(undefined)) callback(functionality);
 
-    let new_functionality = Array(class_names.length);
+    let new_functionality = Array(smash_tags.length);
     let calls = 0;
 
-    class_names.map((class_name, i) => {
-        chrome.storage.sync.get([class_name], (result) => {
-            let state = result[class_name];
+    smash_tags.map((instance, i) => {
+        chrome.storage.sync.get([instance], (result) => {
+            let state = result[instance];
             if (state != true && state != false) state = true;
 
             new_functionality[i] = state;

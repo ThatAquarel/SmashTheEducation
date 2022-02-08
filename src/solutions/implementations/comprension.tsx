@@ -2,9 +2,9 @@ import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
-export class ListeningMultipleChoice extends AbstractSolution {
-    get name(): string {
-        return "ListeningMultipleChoice";
+export class Comprension extends AbstractSolution {
+    get smash_tag(): string {
+        return "comprension";
     }
 
     _solve(): void {

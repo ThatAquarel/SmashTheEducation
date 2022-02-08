@@ -1,14 +1,9 @@
 import { loadFunctionality } from "../functions/save_functionality";
-import { class_names_dict } from "./class_names";
 
 export abstract class AbstractSolution {
     readonly current_document: Document;
 
-    abstract get name(): string;
-
-    get class_name(): string {
-        return class_names_dict[this.name];
-    };
+    abstract get smash_tag(): string;
 
     constructor(current_document: Document) {
         this.current_document = current_document;
@@ -16,7 +11,7 @@ export abstract class AbstractSolution {
 
     is_using_solution(): boolean {
         let action = document.querySelector('form[action]')?.getAttribute("action");
-        if (action?.includes(this.class_name)) {
+        if (action?.includes(this.smash_tag)) {
             return true;
         } else {
             return false;
@@ -24,7 +19,7 @@ export abstract class AbstractSolution {
     };
 
     solve(): void {
-        loadFunctionality(this.class_name, (state) => {
+        loadFunctionality(this.smash_tag, (state) => {
             if (state) this._solve();
         });
     }

@@ -1,7 +1,7 @@
 import { toggle_answers } from "./functions/toggle_answers";
-import { Solution } from "./solutions/solution";
+import { instances } from "./solutions/solutions";
 
-for (let solution of Solution.get_instances()) {
+for (let solution of instances) {
     if (solution.is_using_solution()) {
         solution.solve();
         break;
