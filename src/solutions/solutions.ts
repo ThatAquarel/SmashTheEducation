@@ -5,6 +5,7 @@ import { Comprension } from "./implementations/comprension";
 import { CompletandoTexto } from "./implementations/completando_texto";
 import { Relacionando } from "./implementations/relacionando";
 import { EscuchaSelecciona } from "./implementations/escucha_selecciona";
+import { Revuelto } from "./implementations/revuelto";
 
 export const instances: AbstractSolution[] = [
     new RelacionaImagen(document),
@@ -13,6 +14,7 @@ export const instances: AbstractSolution[] = [
     new Comprension(document),
     new CompletandoTexto(document),
     new EscuchaSelecciona(document),
+    new Revuelto(document)
 ]
 
 // To add more implementations, just add them to the instances array.

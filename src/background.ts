@@ -5,6 +5,7 @@ const smash_tags: string[] = [
     "comprension",
     "completando_texto",
     "escucha_selecciona",
+    "revuelto"
 ];
 
 let functionality = Array(smash_tags.length);

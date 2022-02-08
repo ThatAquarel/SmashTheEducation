@@ -8,13 +8,13 @@ export class Revuelto extends AbstractSolution {
     }
 
     _solve(): void {
-        let answer_cards = this.current_document.getElementsByClassName("carousel-item-wrapper");
-        let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("data-sequence"));
+        let answer_cards = this.current_document.getElementsByClassName("SM2-act-relItem");
+        let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("sequence"));
 
-        let fields = this.current_document.getElementsByClassName("activity-o-card-answerzone");
+        let fields = this.current_document.getElementsByClassName("dropzone");
 
         for (const field of fields) {
-            let card_idx = field.getAttribute("data-sequence");
+            let card_idx = field.getAttribute("sequence");
             if (card_idx == null) continue;
 
             let answer_card = answer_cards[answer_cards_idx.indexOf(card_idx)];
