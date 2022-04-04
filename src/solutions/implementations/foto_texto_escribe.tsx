@@ -7,7 +7,7 @@ export class FotoTextoEscribe extends AbstractSolution {
         return "foto_texto_escribe";
     }
 
-    _solve(): void {
+    _show_answer(): void {
         let answer_string = this.current_document.getElementById("C_Ans")?.innerText;
         if (answer_string == null) answer_string = "Could not find answer";
 

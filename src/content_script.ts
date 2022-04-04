@@ -3,7 +3,7 @@ import { instances } from "./solutions/solutions";
 
 for (let solution of instances) {
     if (solution.is_using_solution()) {
-        solution.solve();
+        solution.show_answer();
         break;
     }
 }

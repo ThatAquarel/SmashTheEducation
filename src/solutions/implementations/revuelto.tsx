@@ -7,7 +7,7 @@ export class Revuelto extends AbstractSolution {
         return "revuelto";
     }
 
-    _solve(): void {
+    _show_answer(): void {
         let answer_cards = this.current_document.getElementsByClassName("SM2-act-relItem");
         let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("sequence"));
 

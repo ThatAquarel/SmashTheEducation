@@ -18,11 +18,15 @@ export abstract class AbstractSolution {
         }
     };
 
-    solve(): void {
+    abstract _show_answer(): void;
+    show_answer(): void {
         loadFunctionality(this.smash_tag, (state) => {
-            if (state) this._solve();
+            if (state) this._show_answer();
         });
     }
 
     abstract _solve(): void;
+    solve(): void {
+
+    }
 }

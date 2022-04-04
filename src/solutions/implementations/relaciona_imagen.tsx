@@ -7,7 +7,7 @@ export class RelacionaImagen extends AbstractSolution {
         return "relaciona_imagen";
     }
 
-    _solve(): void {
+    _show_answer(): void {
         let fields = this.current_document.getElementsByClassName("activity-o-card-answer");
         for (const field of fields) {
             let answer_string = field.children[1].textContent;

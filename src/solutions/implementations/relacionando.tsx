@@ -7,7 +7,7 @@ export class Relacionando extends AbstractSolution {
         return "relacionando";
     }
 
-    _solve(): void {
+    _show_answer(): void {
         let answer_cards = this.current_document.getElementsByClassName("carousel-item-wrapper");
         let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("data-sequence"));
 

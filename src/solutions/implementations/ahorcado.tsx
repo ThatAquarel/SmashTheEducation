@@ -7,7 +7,7 @@ export class Ahorcado extends AbstractSolution {
         return "ahorcado";
     }
 
-    _solve(): void {
+    _show_answer(): void {
         let answer_string = this.current_document
             .getElementById("ActivityContent_sequenceAnswer")
             ?.getAttribute("value");
