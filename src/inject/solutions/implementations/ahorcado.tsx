@@ -7,7 +7,7 @@ export class Ahorcado extends AbstractSolution {
         return "ahorcado";
     }
 
-    _show_answer(): void {
+    _show(): void {
         let answer_string = this.current_document
             .getElementById("ActivityContent_sequenceAnswer")
             ?.getAttribute("value");
@@ -19,5 +19,9 @@ export class Ahorcado extends AbstractSolution {
         element.innerHTML += renderComponentToString(
             <AnswerField answer={answer_string} color="Green" backgroundColor="white" />
         );
+    }
+
+    _solve(): void {
+        throw new Error("Method not implemented.");
     }
 }

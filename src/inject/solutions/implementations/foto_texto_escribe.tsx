@@ -7,7 +7,7 @@ export class FotoTextoEscribe extends AbstractSolution {
         return "foto_texto_escribe";
     }
 
-    _show_answer(): void {
+    _show(): void {
         let answer_string = this.current_document.getElementById("C_Ans")?.innerText;
         if (answer_string == null) answer_string = "Could not find answer";
 
@@ -16,5 +16,9 @@ export class FotoTextoEscribe extends AbstractSolution {
         field.innerHTML += renderComponentToString(
             <AnswerField answer={answer_string} color="Green" />
         );
+    }
+
+    _solve(): void {
+        throw new Error("Method not implemented.");
     }
 }

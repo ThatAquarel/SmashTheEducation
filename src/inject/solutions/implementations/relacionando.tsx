@@ -2,19 +2,19 @@ import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
-export class Revuelto extends AbstractSolution {
+export class Relacionando extends AbstractSolution {
     get smash_tag(): string {
-        return "revuelto";
+        return "relacionando";
     }
 
-    _show_answer(): void {
-        let answer_cards = this.current_document.getElementsByClassName("SM2-act-relItem");
-        let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("sequence"));
+    _show(): void {
+        let answer_cards = this.current_document.getElementsByClassName("carousel-item-wrapper");
+        let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("data-sequence"));
 
-        let fields = this.current_document.getElementsByClassName("dropzone");
+        let fields = this.current_document.getElementsByClassName("activity-o-card-answerzone");
 
         for (const field of fields) {
-            let card_idx = field.getAttribute("sequence");
+            let card_idx = field.getAttribute("data-sequence");
             if (card_idx == null) continue;
 
             let answer_card = answer_cards[answer_cards_idx.indexOf(card_idx)];
@@ -28,5 +28,9 @@ export class Revuelto extends AbstractSolution {
                 <AnswerField answer={answer_string} color="Green" backgroundColor="white" />
             );
         }
+    }
+
+    _solve(): void {
+        throw new Error("Method not implemented.");
     }
 }

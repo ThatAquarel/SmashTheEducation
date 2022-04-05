@@ -1,4 +1,10 @@
-import { loadFunctionality } from "../functions/save_functionality";
+import { StorageFrontend } from "../../common/background_api_frontend";
+
+export enum SolutionsState {
+    Disabled = 0,
+    Show = 1,
+    Solve = 2
+}
 
 export abstract class AbstractSolution {
     readonly current_document: Document;
@@ -18,15 +24,21 @@ export abstract class AbstractSolution {
         }
     };
 
-    abstract _show_answer(): void;
-    show_answer(): void {
-        loadFunctionality(this.smash_tag, (state) => {
-            if (state) this._show_answer();
+    abstract _show(): void;
+    show(): void {
+        StorageFrontend.getState((state) => {
+            if (state[this.smash_tag] === SolutionsState.Show) {
+                this._show();
+            }
         });
     }
 
     abstract _solve(): void;
     solve(): void {
-
+        StorageFrontend.getState((state) => {
+            if (state[this.smash_tag] === SolutionsState.Solve) {
+                this._solve();
+            }
+        })
     }
 }

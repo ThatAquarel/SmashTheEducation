@@ -1,16 +1,16 @@
-import { toggle_answers } from "./functions/toggle_answers";
+// import { toggle_answers } from "../functions/toggle_answers";
 import { instances } from "./solutions/solutions";
 
 for (let solution of instances) {
     if (solution.is_using_solution()) {
-        solution.show_answer();
+        solution.show();
         break;
     }
 }
 
 function keydown(event: KeyboardEvent) {
     if (event.ctrlKey && event.shiftKey && event.key === "Q") {
-        toggle_answers();
+        // toggle_answers();
     }
 }
 
