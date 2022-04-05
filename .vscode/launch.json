@@ -7,9 +7,18 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "Launch Chrome",
             "url": "https://www.google.com",
-            "runtimeArgs": ["--load-extension=${workspaceFolder}/dist/"]
+            "runtimeArgs": [
+                "--load-extension=${workspaceFolder}/dist/",
+                "--remote-debugging-port=9222"
+            ]
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 9222,
         }
     ]
 }

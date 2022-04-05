@@ -41,5 +41,6 @@ module.exports = {
     ],
     performance: {
         hints: false
-    }
+    },
+    cache: true
 };

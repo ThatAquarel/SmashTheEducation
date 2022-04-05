@@ -7,8 +7,9 @@ import { instances } from "../inject/solutions/solutions";
 import { AppHeader } from "./ui/header"
 
 ReactDOM.render(
-    <React.StrictMode>
-        <MantineProvider theme={{ colorScheme: 'dark' }}>
+    <MantineProvider theme={{ colorScheme: 'dark' }}>
+
+        <React.StrictMode>
             <AppShell
                 padding="md"
                 header={
@@ -22,8 +23,8 @@ ReactDOM.render(
             >
                 {<p>testing 2</p>}
             </AppShell>
-        </MantineProvider>
-    </React.StrictMode>,
+        </React.StrictMode>
+    </MantineProvider>,
     document.getElementById("root")
 );
 
