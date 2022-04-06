@@ -1,30 +1,38 @@
-export namespace StorageBackend {
-    let states: { [id: string]: number } = {};
+let states: { [id: string]: boolean } = {};
 
-    export function setState(new_states: { [id: string]: number }) {
-        chrome.storage.sync.set(new_states, () => {
+export namespace StorageBackend {
+    const app_state_key = "app_state";
+
+    export function setState(new_states: { [id: string]: boolean }) {
+        chrome.storage.sync.set({app_state_key: new_states}, () => {
             for (let key in new_states) {
                 states[key] = new_states[key];
             }
         });
     }
 
-    export function getState(callback: (_: { [id: string]: number }) => void) {
+    export function getState(callback: (_: { [id: string]: boolean }) => void) {
         if (Object.keys(states).length !== 0) {
+            console.log("getstate from cache");
+            // console.log(states);
             callback(states);
             return;
         }
-
-        chrome.storage.sync.get(Object.keys(states), (result) => {
-            for (let key in states) {
-                states[key] = result[key];
+        console.log("getstate from storage");
+        chrome.storage.sync.get([app_state_key], (result) => {
+            let new_states = result[app_state_key];
+            for (let key in new_states) {
+                states[key] = new_states[key];
             }
             callback(states);
         });
     }
 }
 
-StorageBackend.getState((state) => { console.log(state); });
+StorageBackend.getState((loaded_states) => {
+    console.log("initial load state")
+    states = { ...loaded_states };
+});
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     if (message.set === true) {

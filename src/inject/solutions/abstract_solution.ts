@@ -1,11 +1,5 @@
 import { StorageFrontend } from "../../common/background_api_frontend";
 
-export enum SolutionsState {
-    Disabled = 0,
-    Show = 1,
-    Solve = 2
-}
-
 export abstract class AbstractSolution {
     readonly current_document: Document;
 
@@ -16,6 +10,14 @@ export abstract class AbstractSolution {
 
     constructor(current_document: Document) {
         this.current_document = current_document;
+    }
+
+    is_show(state: { [id: string]: boolean }): boolean | null {
+        if ("show" in state) {
+            return state["show"];
+        } else {
+            return null;
+        }
     }
 
     is_using_solution(): boolean {
@@ -30,7 +32,7 @@ export abstract class AbstractSolution {
     abstract _show(): void;
     show(): void {
         StorageFrontend.getState((state) => {
-            if (state[this.smash_tag] === SolutionsState.Show) {
+            if (this.is_show(state) === true) {
                 this._show();
             }
         });
@@ -39,7 +41,7 @@ export abstract class AbstractSolution {
     abstract _solve(): void;
     solve(): void {
         StorageFrontend.getState((state) => {
-            if (state[this.smash_tag] === SolutionsState.Solve) {
+            if (this.is_show(state) === false) {
                 this._solve();
             }
         })
