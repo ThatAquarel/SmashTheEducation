@@ -3,6 +3,13 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class Comprension extends AbstractSolution {
+    get display_name(): string {
+        return "Comprehension multiple choice";
+    }
+    get description(): string {
+        return "Select the correct answer of 3 possible answers.";
+    }
+
     get smash_tag(): string {
         return "comprension";
     }

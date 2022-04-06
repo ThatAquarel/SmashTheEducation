@@ -3,6 +3,13 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class FotoTextoEscribe extends AbstractSolution {
+    get display_name(): string {
+        return "Fill blank with word";
+    }
+    get description(): string {
+        return "Listen to audio and fill in the blank.";
+    }
+
     get smash_tag(): string {
         return "foto_texto_escribe";
     }

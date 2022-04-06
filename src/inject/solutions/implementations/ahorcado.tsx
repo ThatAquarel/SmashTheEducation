@@ -3,6 +3,13 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class Ahorcado extends AbstractSolution {
+    get display_name(): string {
+        return "Drowning";
+    }
+    get description(): string {
+        return "Select letters while a guy is drowning from your mistakes";
+    }
+
     get smash_tag(): string {
         return "ahorcado";
     }

@@ -3,6 +3,13 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class Relacionando extends AbstractSolution {
+    get display_name(): string {
+        return "Associate verbs with pronouns";
+    }
+    get description(): string {
+        return "Select cards to associate verbs with their matching pronoun.";
+    }
+
     get smash_tag(): string {
         return "relacionando";
     }

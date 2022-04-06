@@ -3,6 +3,13 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class RelacionaImagen extends AbstractSolution {
+    get display_name(): string {
+        return "Associate text card with images";
+    }
+    get description(): string {
+        return "Select image that best describes the card with text.";
+    }
+
     get smash_tag(): string {
         return "relaciona_imagen";
     }

@@ -3,6 +3,13 @@ import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
 export class Revuelto extends AbstractSolution {
+    get display_name(): string {
+        return "Reorder sentence";
+    }
+    get description(): string {
+        return "Select the cards of the sentence parts in the correct order.";
+    }
+
     get smash_tag(): string {
         return "revuelto";
     }

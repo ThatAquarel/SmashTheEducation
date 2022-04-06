@@ -9,6 +9,9 @@ export enum SolutionsState {
 export abstract class AbstractSolution {
     readonly current_document: Document;
 
+    abstract get display_name(): string;
+    abstract get description(): string;
+
     abstract get smash_tag(): string;
 
     constructor(current_document: Document) {
