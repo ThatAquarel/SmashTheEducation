@@ -1,5 +1,3 @@
-import { StorageFrontend } from "../../common/background_api_frontend";
-
 export abstract class AbstractSolution {
     readonly current_document: Document;
 
@@ -31,19 +29,9 @@ export abstract class AbstractSolution {
 
     abstract _show(): void;
     show(): void {
-        StorageFrontend.getState((state) => {
-            if (this.is_show(state) === true) {
-                this._show();
-            }
-        });
     }
 
     abstract _solve(): void;
     solve(): void {
-        StorageFrontend.getState((state) => {
-            if (this.is_show(state) === false) {
-                this._solve();
-            }
-        })
     }
 }

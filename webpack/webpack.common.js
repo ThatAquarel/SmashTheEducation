@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         popup: path.join(srcDir, './popup/popup.tsx'),
         //   options: path.join(srcDir, 'options.tsx'),
-        background: path.join(srcDir, './background/background_api_backend.ts'),
+        // background: path.join(srcDir, './background/background_api_backend.ts'),
         content_script: path.join(srcDir, './inject/content_script.ts'),
     },
     output: {
@@ -16,6 +16,7 @@ module.exports = {
         filename: "[name].js",
     },
     optimization: {
+        minimize: false,
         splitChunks: {
             name: "vendor",
             chunks: "initial",

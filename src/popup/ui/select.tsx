@@ -1,9 +1,9 @@
-import { Checkbox, Tooltip, Switch } from '@mantine/core';
+import { Checkbox, Switch, Tooltip } from '@mantine/core';
 import { randomId, useListState } from '@mantine/hooks';
 import React, { useEffect } from "react";
-
 import { instances } from "../../inject/solutions/solutions";
-import { StorageFrontend } from '../../common/background_api_frontend';
+import { SelectStorage } from "../storage/storage";
+
 
 export function Select() {
     let initialValues: { [id: string]: any }[] = [];
@@ -19,10 +19,7 @@ export function Select() {
 
     const [values, handlers] = useListState(initialValues);
     useEffect(() => {
-        StorageFrontend.getState((state) => {
-            // console.log("getstate");
-            // console.log(state);
-
+        SelectStorage.getState((state) => {
             handlers.setState((current) =>
                 current.map((value) => ({ ...value, checked: state[value.smash_tag] }))
             );
@@ -31,14 +28,11 @@ export function Select() {
 
     useEffect(() => {
         let new_state: { [id: string]: boolean } = {}
-        // console.log("setstate");
-        // console.log(new_state);
-
         values.forEach((value) => {
             new_state[value.smash_tag] = value.checked;
         });
 
-        StorageFrontend.setState(new_state);
+        SelectStorage.setState(new_state);
     }, [values]);
 
     const allChecked = values.every((value) => value.checked);
@@ -81,8 +75,8 @@ export function Select() {
             />
             {items}
             <Switch
-              onLabel="Show"
-              offLabel="Solve"
+                onLabel="Show"
+                offLabel="Solve"
             />
         </>
     );
