@@ -14,7 +14,7 @@ export class Revuelto extends AbstractSolution {
         return "revuelto";
     }
 
-    show(): JSX.Element {
+    show() {
         let answer_cards = this.current_document.getElementsByClassName("SM2-act-relItem");
         let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("sequence"));
 

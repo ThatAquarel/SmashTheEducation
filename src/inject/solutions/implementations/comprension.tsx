@@ -14,7 +14,7 @@ export class Comprension extends AbstractSolution {
         return "comprension";
     }
 
-    show(): JSX.Element {
+    show() {
         let questions = this.current_document.getElementsByClassName("ms-act-section-workbook-card-a-item");
         for (const question of questions) {
 

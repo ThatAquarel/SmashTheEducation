@@ -14,7 +14,7 @@ export class CompletandoTexto extends AbstractSolution {
         return "completando_texto";
     }
 
-    show(): JSX.Element {
+    show() {
         // let fields = this.current_document.querySelectorAll('[id^="resultBox_"]');
         let fields = this.current_document.getElementsByClassName("hidden");
 

@@ -1,5 +1,6 @@
 // import { toggle_answers } from "../functions/toggle_answers";
-import { LoadingOverlay, Overlay } from "@mantine/core";
+import { LoadingOverlay, MantineProvider, Overlay } from "@mantine/core";
+import { randomId } from "@mantine/hooks";
 import { NotificationsProvider } from "@mantine/notifications";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -22,15 +23,17 @@ document.addEventListener('keydown', keydown, false);
 
 
 const current_site = document.getElementsByClassName("current-site-Smash")[0];
-const innerHTML = current_site.innerHTML;
-current_site.innerHTML = "";
+const react_root_id = `react-root-${randomId()}`
 
 if (current_site != null) {
+    const react_root = document.createElement("div");
+    react_root.setAttribute("id", react_root_id);
+    current_site.appendChild(react_root);
+
     ReactDOM.render(
-        <div>
-            {/* <LoadingOverlay visible={true} /> */}
-            <div className="smash_content" dangerouslySetInnerHTML={{ __html: innerHTML }}></div>
-        </div>,
-        current_site
+        <MantineProvider>
+            <NotificationsProvider zIndex={2147483647} />
+        </MantineProvider>,
+        document.getElementById(react_root_id)
     );
-};
+}

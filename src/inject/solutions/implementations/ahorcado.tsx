@@ -15,7 +15,7 @@ export class Ahorcado extends AbstractSolution {
         return "ahorcado";
     }
 
-    show(): JSX.Element {
+    show() {
         let answer_string = this.current_document
             .getElementById("ActivityContent_sequenceAnswer")
             ?.getAttribute("value");
@@ -27,15 +27,16 @@ export class Ahorcado extends AbstractSolution {
         console.log("AAAA");
         console.log(answer_string);
 
-
-        showNotification({
-            title: "Answer",
-            message: answer_string,
-            autoClose: false,
-        });
+        setTimeout(() => {
+            showNotification({
+                title: answer_string,
+                message: "",
+                autoClose: false,
+            });
+        }, 3000);
     }
 
-    solve(): JSX.Element {
+    solve() {
         throw new Error("Method not implemented.");
     }
 }

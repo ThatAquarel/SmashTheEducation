@@ -33,7 +33,7 @@ export abstract class AbstractSolution {
         });
     }
 
-    abstract show(): JSX.Element;
+    abstract show(): void;
 
-    abstract solve(): JSX.Element;
+    abstract solve(): void;
 }
