@@ -12,7 +12,7 @@ import { instances } from "./solutions/solutions";
 function ready() {
     for (let solution of instances) {
         if (solution.is_using_solution()) {
-            solution.show();
+            solution.solution();
             break;
         }
     }

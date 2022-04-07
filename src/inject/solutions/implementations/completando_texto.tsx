@@ -31,7 +31,7 @@ export class CompletandoTexto extends AbstractSolution {
         }
     }
 
-   solve(): JSX.Element {
-        throw new Error("Method not implemented.");
+    solve() {
+        return;
     }
 }

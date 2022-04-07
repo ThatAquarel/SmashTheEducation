@@ -1,6 +1,8 @@
 import { ConfigStorage } from "../../popup/storage/config_storage";
+import { SelectStorage } from "../../popup/storage/select_storage";
 
 const config_storage = new ConfigStorage();
+const select_storage = new SelectStorage();
 
 export abstract class AbstractSolution {
     readonly current_document: Document;
@@ -24,12 +26,17 @@ export abstract class AbstractSolution {
     };
 
     solution() {
-        config_storage.getState((state) => {
-            if (state["config"] === "hint") {
-                this.show();
-            } else if (state["config"] === "auto") {
-                this.solve();
-            }
+        select_storage.getState((select_state) => {
+            if (select_state[this.smash_tag] !== true) { return };
+
+            config_storage.getState((config_state) => {
+                console.log(config_state);
+                if (config_state["config"] === "hint") {
+                    this.show();
+                } else if (config_state["config"] === "auto") {
+                    this.solve();
+                }
+            });
         });
     }
 

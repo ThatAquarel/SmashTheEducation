@@ -13,10 +13,10 @@ export class EscuchaSelecciona extends RelacionaImagen {
     }
 
     show() {
-        throw new Error("Method not implemented.");
+        return;
     }
 
-   solve(): JSX.Element {
-        throw new Error("Method not implemented.");
+    solve() {
+        return;
     }
 }

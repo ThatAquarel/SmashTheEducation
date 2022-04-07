@@ -23,6 +23,6 @@ export class Ahorcado extends AbstractSolution {
     }
 
     solve() {
-        throw new Error("Method not implemented.");
+        return;
     }
 }
