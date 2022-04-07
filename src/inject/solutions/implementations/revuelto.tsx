@@ -2,7 +2,7 @@ import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
-export class Revuelto extends AbstractSolution {
+export class Revuelto extends AbstractSolution<string[]> {
     get display_name(): string {
         return "Reorder sentence";
     }
@@ -12,6 +12,10 @@ export class Revuelto extends AbstractSolution {
 
     get smash_tag(): string {
         return "revuelto";
+    }
+
+    get_answer(): string[] {
+        throw new Error("Method not implemented.");
     }
 
     show() {

@@ -2,7 +2,7 @@ import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
-export class CompletandoTexto extends AbstractSolution {
+export class CompletandoTexto extends AbstractSolution<string[]> {
     get display_name(): string {
         return "Fill blanks in text";
     }
@@ -12,6 +12,10 @@ export class CompletandoTexto extends AbstractSolution {
 
     get smash_tag(): string {
         return "completando_texto";
+    }
+
+    get_answer(): string[] {
+        throw new Error("Method not implemented.");
     }
 
     show() {

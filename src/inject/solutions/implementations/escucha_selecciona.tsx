@@ -12,6 +12,10 @@ export class EscuchaSelecciona extends RelacionaImagen {
         return "escucha_selecciona";
     }
 
+    // get_answer(): any {
+    //     throw new Error("Method not implemented.");
+    // }
+
     show() {
         return;
     }

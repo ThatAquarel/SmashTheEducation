@@ -1,8 +1,9 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
+import { random_human_delay } from "../../utility";
 
-export class FotoTextoEscribe extends AbstractSolution {
+export class FotoTextoEscribe extends AbstractSolution<string> {
     get display_name(): string {
         return "Fill blank with word";
     }
@@ -12,6 +13,10 @@ export class FotoTextoEscribe extends AbstractSolution {
 
     get smash_tag(): string {
         return "foto_texto_escribe";
+    }
+
+    get_answer(): string {
+        throw new Error("Method not implemented.");
     }
 
     show() {
@@ -26,6 +31,17 @@ export class FotoTextoEscribe extends AbstractSolution {
     }
 
     solve() {
-        return;
+        let answer_string = this.current_document.getElementById("C_Ans")?.innerText;
+        if (answer_string == null) return;
+
+        let text_area = document.getElementById("Textarea");
+        if (text_area == null) return;
+
+        text_area.innerText = answer_string;
+        random_human_delay(answer_string.length, () => {
+            let button = document.getElementById("verified");
+            if (button == null) return;
+            button.click();
+        });
     }
 }

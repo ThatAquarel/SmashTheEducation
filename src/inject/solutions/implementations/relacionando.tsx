@@ -2,7 +2,7 @@ import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
-export class Relacionando extends AbstractSolution {
+export class Relacionando extends AbstractSolution<string[]> {
     get display_name(): string {
         return "Associate verbs with pronouns";
     }
@@ -12,6 +12,10 @@ export class Relacionando extends AbstractSolution {
 
     get smash_tag(): string {
         return "relacionando";
+    }
+
+    get_answer(): string[] {
+        throw new Error("Method not implemented.");
     }
 
     show() {

@@ -2,7 +2,7 @@ import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
-export class RelacionaImagen extends AbstractSolution {
+export class RelacionaImagen extends AbstractSolution<any> {
     get display_name(): string {
         return "Associate text card with images";
     }
@@ -12,6 +12,10 @@ export class RelacionaImagen extends AbstractSolution {
 
     get smash_tag(): string {
         return "relaciona_imagen";
+    }
+
+    get_answer(): any {
+        throw new Error("Method not implemented.");
     }
 
     show() {

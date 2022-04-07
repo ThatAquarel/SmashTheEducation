@@ -2,7 +2,7 @@ import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
 
-export class Comprension extends AbstractSolution {
+export class Comprension extends AbstractSolution<number[]> {
     get display_name(): string {
         return "Comprehension multiple choice";
     }
@@ -12,6 +12,10 @@ export class Comprension extends AbstractSolution {
 
     get smash_tag(): string {
         return "comprension";
+    }
+
+    get_answer(): number[] {
+        throw new Error("Method not implemented.");
     }
 
     show() {

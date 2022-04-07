@@ -4,7 +4,7 @@ import { SelectStorage } from "../../popup/storage/select_storage";
 const config_storage = new ConfigStorage();
 const select_storage = new SelectStorage();
 
-export abstract class AbstractSolution {
+export abstract class AbstractSolution<T> {
     readonly current_document: Document;
 
     abstract get display_name(): string;
@@ -39,6 +39,8 @@ export abstract class AbstractSolution {
             });
         });
     }
+
+    abstract get_answer(): T;
 
     abstract show(): void;
 
