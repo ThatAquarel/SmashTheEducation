@@ -2,7 +2,10 @@ import { Checkbox, Switch, Tooltip } from '@mantine/core';
 import { randomId, useListState } from '@mantine/hooks';
 import React, { useEffect } from "react";
 import { instances } from "../../inject/solutions/solutions";
-import { SelectStorage } from "../storage/storage";
+import { SelectStorage } from "../storage/select_storage";
+
+
+const select_storage = new SelectStorage();
 
 
 export function Select() {
@@ -19,7 +22,7 @@ export function Select() {
 
     const [values, handlers] = useListState(initialValues);
     useEffect(() => {
-        SelectStorage.getState((state) => {
+        select_storage.getState((state) => {
             handlers.setState((current) =>
                 current.map((value) => ({ ...value, checked: state[value.smash_tag] }))
             );
@@ -32,7 +35,7 @@ export function Select() {
             new_state[value.smash_tag] = value.checked;
         });
 
-        SelectStorage.setState(new_state);
+        select_storage.setState(new_state);
     }, [values]);
 
     const allChecked = values.every((value) => value.checked);

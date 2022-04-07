@@ -1,14 +1,19 @@
-type StorageT<T> = { [id: string]: T }
+export type StorageT<T> = { [id: string]: T }
 
-export abstract class AbstractStorage<T> {
+export class AbstractStorage<T> {
     protected cache: StorageT<T> = {};
 
-    abstract get storage_id(): string;
-    abstract get default_state(): StorageT<T>;
+    getStorageId(): string {
+        throw new Error("Not implemented");
+    }
+
+    getDefaultState(): StorageT<T> {
+        throw new Error("Not implemented");
+    }
 
     setState(new_states: StorageT<T>): void {
-        let msg: { [id: string]: Object } = {};
-        msg[this.storage_id] = new_states;
+        let msg: StorageT<Object> = {};
+        msg[this.getStorageId()] = new_states;
 
         chrome.storage.sync.set(msg, () => {
             for (let key in new_states) {
@@ -23,18 +28,18 @@ export abstract class AbstractStorage<T> {
             return;
         }
 
-        chrome.storage.sync.get([this.storage_id], (result) => {
-            let new_states = result[this.storage_id];
+        chrome.storage.sync.get([this.getStorageId()], (result) => {
+            let new_states = result[this.getStorageId()];
 
             if (new_states == null || Object.keys(new_states).length <= 0) {
-                new_states = { ...this.default_state };
+                new_states = { ...this.getDefaultState() };
             }
             this.setState(new_states);
 
             for (let key in new_states) {
                 this.cache[key] = new_states[key];
             }
-            
+
             callback(this.cache);
         });
     };
