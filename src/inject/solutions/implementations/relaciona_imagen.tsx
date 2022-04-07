@@ -14,7 +14,7 @@ export class RelacionaImagen extends AbstractSolution {
         return "relaciona_imagen";
     }
 
-    _show(): void {
+    show(): JSX.Element {
         let fields = this.current_document.getElementsByClassName("activity-o-card-answer");
         for (const field of fields) {
             let answer_string = field.children[1].textContent;
@@ -29,7 +29,7 @@ export class RelacionaImagen extends AbstractSolution {
         }
     }
 
-    _solve(): void {
+   solve(): JSX.Element {
         throw new Error("Method not implemented.");
     }
 }

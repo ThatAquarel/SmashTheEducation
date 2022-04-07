@@ -14,7 +14,7 @@ export class Relacionando extends AbstractSolution {
         return "relacionando";
     }
 
-    _show(): void {
+    show(): JSX.Element {
         let answer_cards = this.current_document.getElementsByClassName("carousel-item-wrapper");
         let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("data-sequence"));
 
@@ -37,7 +37,7 @@ export class Relacionando extends AbstractSolution {
         }
     }
 
-    _solve(): void {
+   solve(): JSX.Element {
         throw new Error("Method not implemented.");
     }
 }

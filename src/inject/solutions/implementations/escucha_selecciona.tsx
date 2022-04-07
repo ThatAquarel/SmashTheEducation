@@ -12,11 +12,11 @@ export class EscuchaSelecciona extends RelacionaImagen {
         return "escucha_selecciona";
     }
 
-    _show(): void {
+    show(): JSX.Element {
         throw new Error("Method not implemented.");
     }
 
-    _solve(): void {
+   solve(): JSX.Element {
         throw new Error("Method not implemented.");
     }
 }

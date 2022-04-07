@@ -8,7 +8,7 @@ module.exports = {
         popup: path.join(srcDir, './popup/popup.tsx'),
         //   options: path.join(srcDir, 'options.tsx'),
         // background: path.join(srcDir, './background/background_api_backend.ts'),
-        content_script: path.join(srcDir, './inject/content_script.ts'),
+        content_script: path.join(srcDir, './inject/content_script.tsx'),
     },
     output: {
         // globalObject: "this",

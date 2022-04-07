@@ -1,3 +1,7 @@
+import { ConfigStorage } from "../../popup/storage/config_storage";
+
+const config_storage = new ConfigStorage();
+
 export abstract class AbstractSolution {
     readonly current_document: Document;
 
@@ -10,14 +14,6 @@ export abstract class AbstractSolution {
         this.current_document = current_document;
     }
 
-    is_show(state: { [id: string]: boolean }): boolean | null {
-        if ("show" in state) {
-            return state["show"];
-        } else {
-            return null;
-        }
-    }
-
     is_using_solution(): boolean {
         let action = document.querySelector('form[action]')?.getAttribute("action");
         if (action?.includes(this.smash_tag)) {
@@ -27,11 +23,17 @@ export abstract class AbstractSolution {
         }
     };
 
-    abstract _show(): void;
-    show(): void {
+    solution() {
+        config_storage.getState((state) => {
+            if (state["config"] === "hint") {
+                this.show();
+            } else if (state["config"] === "auto") {
+                this.solve();
+            }
+        });
     }
 
-    abstract _solve(): void;
-    solve(): void {
-    }
+    abstract show(): JSX.Element;
+
+    abstract solve(): JSX.Element;
 }

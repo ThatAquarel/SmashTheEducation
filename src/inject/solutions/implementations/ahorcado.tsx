@@ -1,6 +1,7 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
+import { showNotification } from "@mantine/notifications";
 
 export class Ahorcado extends AbstractSolution {
     get display_name(): string {
@@ -14,7 +15,7 @@ export class Ahorcado extends AbstractSolution {
         return "ahorcado";
     }
 
-    _show(): void {
+    show(): JSX.Element {
         let answer_string = this.current_document
             .getElementById("ActivityContent_sequenceAnswer")
             ?.getAttribute("value");
@@ -23,12 +24,18 @@ export class Ahorcado extends AbstractSolution {
         let element = this.current_document.getElementById("botonesletras");
         if (element == null) return;
 
-        element.innerHTML += renderComponentToString(
-            <AnswerField answer={answer_string} color="Green" backgroundColor="white" />
-        );
+        console.log("AAAA");
+        console.log(answer_string);
+
+
+        showNotification({
+            title: "Answer",
+            message: answer_string,
+            autoClose: false,
+        });
     }
 
-    _solve(): void {
+    solve(): JSX.Element {
         throw new Error("Method not implemented.");
     }
 }

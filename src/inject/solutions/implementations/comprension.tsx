@@ -14,7 +14,7 @@ export class Comprension extends AbstractSolution {
         return "comprension";
     }
 
-    _show(): void {
+    show(): JSX.Element {
         let questions = this.current_document.getElementsByClassName("ms-act-section-workbook-card-a-item");
         for (const question of questions) {
 
@@ -31,7 +31,7 @@ export class Comprension extends AbstractSolution {
         }
     }
 
-    _solve(): void {
+   solve(): JSX.Element {
         throw new Error("Method not implemented.");
     }
 }

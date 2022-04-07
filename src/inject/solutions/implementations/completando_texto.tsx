@@ -14,7 +14,7 @@ export class CompletandoTexto extends AbstractSolution {
         return "completando_texto";
     }
 
-    _show(): void {
+    show(): JSX.Element {
         // let fields = this.current_document.querySelectorAll('[id^="resultBox_"]');
         let fields = this.current_document.getElementsByClassName("hidden");
 
@@ -31,7 +31,7 @@ export class CompletandoTexto extends AbstractSolution {
         }
     }
 
-    _solve(): void {
+   solve(): JSX.Element {
         throw new Error("Method not implemented.");
     }
 }
