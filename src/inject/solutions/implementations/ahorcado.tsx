@@ -1,7 +1,5 @@
-import React from "react";
-import { AnswerField, renderComponentToString } from "../answer";
+import { show_answer } from "../../notifications";
 import { AbstractSolution } from "../abstract_solution";
-import { showNotification } from "@mantine/notifications";
 
 export class Ahorcado extends AbstractSolution {
     get display_name(): string {
@@ -19,21 +17,9 @@ export class Ahorcado extends AbstractSolution {
         let answer_string = this.current_document
             .getElementById("ActivityContent_sequenceAnswer")
             ?.getAttribute("value");
-        if (answer_string == null) answer_string = "Could not find answer";
+        if (answer_string == null) return;
 
-        let element = this.current_document.getElementById("botonesletras");
-        if (element == null) return;
-
-        console.log("AAAA");
-        console.log(answer_string);
-
-        setTimeout(() => {
-            showNotification({
-                title: answer_string,
-                message: "",
-                autoClose: false,
-            });
-        }, 3000);
+        show_answer(answer_string);
     }
 
     solve() {
