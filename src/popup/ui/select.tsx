@@ -77,10 +77,6 @@ export function Select() {
                 }
             />
             {items}
-            <Switch
-                onLabel="Show"
-                offLabel="Solve"
-            />
         </>
     );
 }

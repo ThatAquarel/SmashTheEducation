@@ -1,6 +1,7 @@
-import { AppShell, Header, MantineProvider } from '@mantine/core';
+import { AppShell, Header, MantineProvider, Paper, Space } from '@mantine/core';
 import React from "react";
 import ReactDOM from "react-dom";
+import { Config } from './ui/config';
 import { AppHeader } from "./ui/header";
 import { Select } from "./ui/select";
 
@@ -14,7 +15,19 @@ function App() {
                         <AppHeader />
                     }</Header>}
             >
-                {<Select />}
+                {<>
+                    <Config />
+                    <Space h="xs" />
+                    <Paper
+                        style={{
+                            padding: '4px',
+                        }}
+                        sx={(theme) => ({
+                            backgroundColor: theme.colors.dark[8]
+                        })}>
+                        <Select />
+                    </Paper>
+                </>}
             </AppShell>
         </MantineProvider >
     );
