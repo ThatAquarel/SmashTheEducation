@@ -1,8 +1,9 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
+import { calculate_op_time } from "../../utility";
 
-export class RelacionaImagen extends AbstractSolution<any> {
+export class RelacionaImagen extends AbstractSolution<string[]> {
     get display_name(): string {
         return "Associate text card with images";
     }
@@ -14,8 +15,9 @@ export class RelacionaImagen extends AbstractSolution<any> {
         return "relaciona_imagen";
     }
 
-    get_answer(): any {
-        throw new Error("Method not implemented.");
+    get_answer(): string[] {
+        let fields = this.current_document.getElementsByClassName("activity-o-card-answer");
+        return [...fields].map(field => field.children[1].textContent === null ? "" : field.children[1].textContent);
     }
 
     show() {
@@ -34,6 +36,29 @@ export class RelacionaImagen extends AbstractSolution<any> {
     }
 
     solve() {
-        return;
+        let fields = this.current_document.getElementsByClassName("activity-o-card-answer");
+        let answers = this.get_answer();
+
+        for (let i = 0; i < answers.length; i++) {
+
+        }
+
+        function recursive_click(i: number) {
+            let current: string = ([...document.getElementsByClassName("active carousel-item-wrapper")][0] as any).innerText
+
+            for (const field of fields) {
+                if (field.children[1].textContent === current) {
+                    field.parentElement?.click();
+                }
+            }
+
+            if (i < answers.length) {
+                setTimeout(() => {
+                    recursive_click(i + 1);
+                }, calculate_op_time(12, Math.random() / 10));
+            }
+        }
+
+        recursive_click(0);
     }
 }

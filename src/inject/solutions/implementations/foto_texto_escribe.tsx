@@ -16,23 +16,21 @@ export class FotoTextoEscribe extends AbstractSolution<string> {
     }
 
     get_answer(): string {
-        throw new Error("Method not implemented.");
+        let answer_string = this.current_document.getElementById("C_Ans")?.innerText;
+        if (answer_string == null) return "";
+
+        return answer_string;
     }
 
     show() {
-        let answer_string = this.current_document.getElementById("C_Ans")?.innerText;
-        if (answer_string == null) answer_string = "Could not find answer";
-
         let field = document.getElementsByClassName("respuesta")[0];
-
         field.innerHTML += renderComponentToString(
-            <AnswerField answer={answer_string} color="Green" />
+            <AnswerField answer={this.get_answer()} color="Green" />
         );
     }
 
     solve() {
-        let answer_string = this.current_document.getElementById("C_Ans")?.innerText;
-        if (answer_string == null) return;
+        let answer_string = this.get_answer();
 
         let text_area = document.getElementById("Textarea");
         if (text_area == null) return;

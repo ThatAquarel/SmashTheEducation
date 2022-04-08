@@ -15,10 +15,13 @@ export function show_answer(answer: string) {
     }, 500);
 }
 
-export function random_human_delay(ops:number, callback: () => void) {
-    const SECOND_PER_OPS = 1/6;
+export function calculate_op_time(ops: number, bias: number): number {
+    const SECOND_PER_OPS = 1 / 6;
+    return Math.floor((bias + ops * SECOND_PER_OPS) * 1000);
+}
 
+export function random_human_delay(ops: number, callback: () => void) {
     setTimeout(() => {
         callback();
-    }, Math.floor(Math.random() + ops * SECOND_PER_OPS) * 1000);
+    }, calculate_op_time(ops, Math.random()));
 }

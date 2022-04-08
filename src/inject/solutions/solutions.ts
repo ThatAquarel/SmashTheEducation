@@ -8,7 +8,7 @@ import { EscuchaSelecciona } from "./implementations/escucha_selecciona";
 import { Revuelto } from "./implementations/revuelto";
 import { Ahorcado } from "./implementations/ahorcado";
 
-export const instances: AbstractSolution[] = [
+export const instances: AbstractSolution<any>[] = [
     new RelacionaImagen(document),
     new Relacionando(document),
     new FotoTextoEscribe(document),
