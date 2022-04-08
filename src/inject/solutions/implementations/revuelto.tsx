@@ -1,8 +1,9 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
+import { calculate_op_time } from "../../utility";
 
-export class Revuelto extends AbstractSolution<string[]> {
+export class Revuelto extends AbstractSolution<number[]> {
     get display_name(): string {
         return "Reorder sentence";
     }
@@ -14,8 +15,14 @@ export class Revuelto extends AbstractSolution<string[]> {
         return "revuelto";
     }
 
-    get_answer(): string[] {
-        throw new Error("Method not implemented.");
+    get_answer(): number[] {
+        let answer_cards = document.getElementsByClassName("SM2-act-relItem");
+        let answer_cards_idx = [...answer_cards].map(x => x.getAttribute("sequence"));
+
+        let fields = document.getElementsByClassName("dropzone");
+        let fields_idx = [...fields].map(x => x.getAttribute("sequence"));
+
+        return fields_idx.map(x => answer_cards_idx.indexOf(x));
     }
 
     show() {
@@ -42,6 +49,27 @@ export class Revuelto extends AbstractSolution<string[]> {
     }
 
     solve() {
-        return;
+        let answer_cards = document.getElementsByClassName("SM2-act-relItem");
+        let answers: number[] = this.get_answer();
+        let card_sequence = answers.map((x) => {
+            return answer_cards[x].getAttribute("sequence");
+        });
+
+        function recursive_click(i: number) {
+            let answer_cards = [...document.getElementsByClassName("SM2-act-relItem")];
+            answer_cards.map((x) => {
+                if (x.getAttribute("sequence") === card_sequence[i]) {
+                    (x as any).click();
+                }
+            });
+
+            if (i < card_sequence.length - 1) {
+                setTimeout(() => {
+                    recursive_click(i + 1);
+                }, calculate_op_time(4, Math.random() / 10));
+            }
+        }
+
+        recursive_click(0);
     }
 }
