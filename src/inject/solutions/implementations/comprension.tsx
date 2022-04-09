@@ -1,6 +1,7 @@
 import React from "react";
 import { AnswerField, renderComponentToString } from "../answer";
 import { AbstractSolution } from "../abstract_solution";
+import { getElementByXpath } from "../../utility";
 
 export class Comprension extends AbstractSolution<number[]> {
     get display_name(): string {
@@ -15,11 +16,24 @@ export class Comprension extends AbstractSolution<number[]> {
     }
 
     get_answer(): number[] {
-        throw new Error("Method not implemented.");
+        let responses : number[] = [];
+        let questions = this.current_document.getElementsByClassName("ms-act-section-workbook-card-a-item");
+        for (const question of questions) {
+
+            let answers = question.children;
+            for (const answer of answers) {
+                let answer_string = answer.getAttribute("data-answer");
+                if (answer_string == null) answer_string = "Could not find answer";
+
+                else if (answer_string == "True") responses.push(Number(answer.getAttribute("data-content")));
+            }
+        }
+
+        return responses;
     }
 
     show() {
-        let questions = this.current_document.getElementsByClassName("ms-act-section-workbook-card-a-item");
+        let questions = this.current_document.getElementsByClassName("ms-act-section-workbook-card-a-item") as unknown as HTMLElement[];
         for (const question of questions) {
 
             let answers = question.children;
@@ -36,6 +50,38 @@ export class Comprension extends AbstractSolution<number[]> {
     }
 
     solve() {
-        return;
+        let answers_id = this.get_answer();
+        let questions = document.getElementsByClassName("ms-act-section-workbook-card-a-item");
+
+        let button = getElementByXpath('//*[@id="ActivityTypeTimeImage"]/div/span') as HTMLElement;
+        button.click();
+        button = getElementByXpath('//*[@id="ConteinerToHide2"]/div/button[1]') as HTMLElement;
+        button.click();
+
+        function recursive_click(i : number){
+            let answers = questions[i].children;
+            for (const answer of answers) {
+                for (const answer_id of answers_id){
+                    if(Number(answer.getAttribute("data-content")) == answer_id){
+                        const c_answers = answer.children;
+                        for (const c_answer of c_answers){
+                            if (c_answer.hasAttribute("for")){
+                                (c_answer as HTMLElement).click();
+                                console.log(i);
+                                if(i < 11) {
+                                    setTimeout(() => {recursive_click(i + 1); }, 10000)
+                                    if(i == 9){
+                                        button = getElementByXpath('//*[@id="ConteinerToHide2"]/div/button[2]') as HTMLElement;
+                                        button.click();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        recursive_click(0);
     }
 }
