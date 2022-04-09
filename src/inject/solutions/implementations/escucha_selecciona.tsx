@@ -36,9 +36,7 @@ export class EscuchaSelecciona extends AbstractSolution<string[]> {
     }
 
     solve() {
-        console.log("AAAA");
-
-        let fields = this.current_document.getElementsByClassName("activity-o-card-answer");
+        let fields = document.getElementsByClassName("activity-o-card-answer");
         let answers = this.get_answer();
 
         for (let i = 0; i < answers.length; i++) {
@@ -46,7 +44,8 @@ export class EscuchaSelecciona extends AbstractSolution<string[]> {
         }
 
         function recursive_click(i: number) {
-            let current: string = ([...document.getElementsByClassName("active carousel-item-wrapper")][0] as any).innerText
+            let current: string| null = [...document.querySelectorAll(".active p")][0].textContent;
+            if (current == null) return;
 
             for (const field of fields) {
                 if (field.children[1].textContent === current) {
