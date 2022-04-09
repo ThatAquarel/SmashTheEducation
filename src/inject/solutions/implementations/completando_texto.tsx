@@ -5,58 +5,54 @@ import { calculate_op_time } from "../../utility";
 
 export class CompletandoTexto extends AbstractSolution<string[]> {
     get display_name(): string {
-        return "Fill blanks in text";
+        return "Fill blanks in text with cards";
     }
     get description(): string {
-        return "Listen to audio and fill in the missing words";
+        return "Listen to audio and select cards with the missing words";
     }
 
     get smash_tag(): string {
-        return "completando_texto";
+        return "completando_texto.aspx";
     }
 
     get_answer(): string[] {
-        let fields = this.current_document.getElementsByClassName("hidden");
-        return [...fields].map(x => x.textContent == null ? "" : x.textContent);
+        let fields = [...document.getElementsByClassName("dropzone")];
+        return fields.map(x => {
+            let str = (x as HTMLElement).getAttribute("word");
+            return str == null ? "" : str;
+        });
     }
 
     show() {
-        let fields = this.current_document.getElementsByClassName("hidden");
+        let fields = [...document.getElementsByClassName("dropzone")];
+        let answers = this.get_answer();
 
-        for (const field of fields) {
-            let answer_string = field.textContent;
-            if (answer_string == null) answer_string = "Could not find answer";
-
-            let element = field.parentElement;
-            if (element == null) continue;
-
-            element.innerHTML += renderComponentToString(
-                <AnswerField answer={answer_string} color="Green" />
+        fields.map((field, i) => {
+            let ans = document.createElement("span");
+            ans.innerHTML += renderComponentToString(
+                <AnswerField answer={answers[i]} color="Green" />
             );
-        }
+            field.parentNode?.insertBefore(ans, field.nextSibling);
+        });
     }
 
     solve() {
-        let answer = this.get_answer();
-        let fields = [...document.getElementsByClassName("textarea")];
+        let answers = this.get_answer();
 
-        function recursive_type(i: number) {
-            if (i === (answer.length - 1)) {
-                document.getElementById("ActivityContent_sendAnswers")?.click();
-                return;
-            }
+        function recursive_click(i: number) {
+            let cards = [...document.getElementsByClassName("draggme")];
+            let cards_strings = cards.map(x => x.getAttribute("word"));
 
-            if (fields[i] != null) {
-                (fields[i] as HTMLInputElement).textContent = answer[i];
-            }
+            let idx = cards_strings.indexOf(answers[i]);
+            (cards[idx] as any)?.click();
 
-            if (i < (answer.length - 1)) {
+            if (i < answers.length) {
                 setTimeout(() => {
-                    recursive_type(i + 1);
+                    recursive_click(i + 1);
                 }, calculate_op_time(24, Math.random() / 10));
             }
         }
 
-        recursive_type(0);
+        recursive_click(0);
     }
 }

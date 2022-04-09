@@ -1,9 +1,7 @@
-import React from "react";
 import { calculate_op_time } from "../../utility";
-import { AbstractSolution } from "../abstract_solution";
-import { AnswerField, renderComponentToString } from "../answer";
+import { RelacionaImagen } from "./relaciona_imagen";
 
-export class EscuchaSelecciona extends AbstractSolution<string[]> {
+export class EscuchaSelecciona extends RelacionaImagen {
     get display_name(): string {
         return "Associate audio with images";
     }
@@ -13,26 +11,6 @@ export class EscuchaSelecciona extends AbstractSolution<string[]> {
 
     get smash_tag(): string {
         return "escucha_selecciona";
-    }
-
-    get_answer(): string[] {
-        let fields = this.current_document.getElementsByClassName("activity-o-card-answer");
-        return [...fields].map(field => field.children[1].textContent === null ? "" : field.children[1].textContent);
-    }
-
-    show() {
-        let fields = this.current_document.getElementsByClassName("activity-o-card-answer");
-        for (const field of fields) {
-            let answer_string = field.children[1].textContent;
-            if (answer_string == null) answer_string = "Could not find answer";
-
-            let element = field.parentElement;
-            if (element == null) continue;
-
-            element.innerHTML += renderComponentToString(
-                <AnswerField answer={answer_string} color="Green" backgroundColor="white" />
-            );
-        }
     }
 
     solve() {
