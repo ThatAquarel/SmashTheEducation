@@ -53,35 +53,27 @@ export class Comprension extends AbstractSolution<number[]> {
         let answers_id = this.get_answer();
         let questions = document.getElementsByClassName("ms-act-section-workbook-card-a-item");
 
-        let button = getElementByXpath('//*[@id="ActivityTypeTimeImage"]/div/span') as HTMLElement;
-        button.click();
-        button = getElementByXpath('//*[@id="ConteinerToHide2"]/div/button[1]') as HTMLElement;
-        button.click();
+        getElementByXpath('//*[@id="ActivityTypeTimeImage"]/div/span').click();
+        getElementByXpath('//*[@id="ConteinerToHide2"]/div/button[1]').click();
 
         function recursive_click(i : number){
-            let answers = questions[i].children;
-            for (const answer of answers) {
-                for (const answer_id of answers_id){
-                    if(Number(answer.getAttribute("data-content")) == answer_id){
-                        const c_answers = answer.children;
-                        for (const c_answer of c_answers){
-                            if (c_answer.hasAttribute("for")){
-                                (c_answer as HTMLElement).click();
-                                console.log(i);
-                                if(i < 11) {
-                                    setTimeout(() => {recursive_click(i + 1); }, 10000)
-                                    if(i == 9){
-                                        button = getElementByXpath('//*[@id="ConteinerToHide2"]/div/button[2]') as HTMLElement;
-                                        button.click();
-                                    }
-                                }
-                            }
-                        }
-                    }
+            for (const answer of questions[i].children) {
+                if(!answers_id.includes(Number(answer.getAttribute("data-content")))){
+                    continue;
+                }
+                (answer.children[1] as HTMLElement).click();
+                if(i < 10) {
+                    setTimeout(() => {recursive_click(i + 1); }, 50);
+                    return;
+                }
+                else {
+                    getElementByXpath('//*[@id="ConteinerToHide2"]/div/button[2]').click();
+                    return;
                 }
             }
-        }
 
+        }
+        
         recursive_click(0);
     }
 }
