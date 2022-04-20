@@ -1,4 +1,4 @@
-# SmashTheEducation
+# Twinge
 
 ![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
 
@@ -11,7 +11,7 @@
 
 Open a powershell window and run the following commands:
 ```
-git clone https://github.com/ThatAquarel/SmashTheEducation.git
+git clone https://github.com/ThatAquarel/Twinge.git
 cd SmashTheEducation
 npm install
 npm run build
